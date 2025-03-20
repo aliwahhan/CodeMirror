@@ -1,0 +1,16 @@
+.error-highlight {
+    text-decoration: underline;
+    text-decoration-color: red;
+    text-decoration-thickness: 2px;
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+}
+
+.error-container {
+    display: inline-block;
+    margin: 5px;
+}
+
+
+

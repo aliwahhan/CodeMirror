@@ -1,0 +1,46 @@
+{
+  "name": "codemirror",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@codemirror/autocomplete": "^6.18.6",
+    "@codemirror/basic-setup": "^0.20.0",
+    "@codemirror/highlight": "^0.19.8",
+    "@codemirror/lang-javascript": "^6.2.3",
+    "@codemirror/language": "^6.11.0",
+    "@codemirror/lint": "^6.8.4",
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/view": "^6.36.4",
+    "@lezer/common": "^1.2.3",
+    "@lezer/generator": "^1.7.2",
+    "@lezer/json": "^1.0.3",
+    "@lezer/lr": "^1.4.2",
+    "@uiw/codemirror-themes": "^4.23.10",
+    "@uiw/react-codemirror": "^4.23.10",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@babel/parser": "^7.26.10",
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@typescript-eslint/eslint-plugin": "^8.26.1",
+    "@typescript-eslint/parser": "^8.26.1",
+    "@vitejs/plugin-react-swc": "^3.8.0",
+    "eslint": "^9.22.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^6.2.0"
+  }
+}

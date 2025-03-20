@@ -1,0 +1,131 @@
+@top Program { Statement* }
+
+Statement {
+  FunctionDefinition | VariableDeclaration | ClassDefinition | InterfaceDefinition |
+  TypeAlias | ImportStatement | ExportStatement | IfStatement | LoopStatement |
+  SwitchStatement | TryCatchStatement | EnumDefinition | NamespaceDefinition |
+  ModuleDefinition | Comment
+}
+
+FunctionDefinition {
+  "function" Identifier "<" TypeParamList? ">"? "(" ParamList? ")" ":" Type "{" Statement* "}"
+}
+
+ClassDefinition {
+  "class" Identifier ("extends" Identifier)? ("implements" Identifier ("," Identifier)*)? "{" ClassBody "}"
+}
+
+ClassBody {
+  (VariableDeclaration | FunctionDefinition | AccessModifier? "readonly"? Identifier ":" Type "=" Expression ";")*
+}
+
+InterfaceDefinition {
+  "interface" Identifier "{" InterfaceBody "}"
+}
+
+InterfaceBody {
+  (Identifier ":" Type ";")*
+}
+
+EnumDefinition {
+  "enum" Identifier "{" EnumBody "}"
+}
+
+EnumBody {
+  (Identifier "=" Literal ("," Identifier "=" Literal)*)?
+}
+
+NamespaceDefinition {
+  "namespace" Identifier "{" Statement* "}"
+}
+
+ModuleDefinition {
+  "module" Identifier "{" Statement* "}"
+}
+
+TypeAlias {
+  "type" Identifier "=" Type ";"
+}
+
+ImportStatement {
+  "import" (Identifier | "{ " Identifier ("," Identifier)* " }") "from" StringLiteral ";"
+}
+
+ExportStatement {
+  "export" ("default"? Identifier | "{ " Identifier ("," Identifier)* " }") ";"
+}
+
+VariableDeclaration {
+  ("let" | "const")? "readonly"? Identifier ":" Type "=" Expression ";"
+}
+
+Expression {
+  BinaryExpression | FunctionCall | Identifier | Literal | ObjectLiteral | ArrayLiteral
+}
+
+BinaryExpression {
+  Expression BinaryOperator Expression
+}
+
+BinaryOperator {
+  "+" | "-" | "*" | "/" | "&&" | "||" | "===" | "!==" | ">" | "<" | ">=" | "<="
+}
+
+ObjectLiteral {
+  "{" (Identifier ":" Expression ("," Identifier ":" Expression)*)? "}"
+}
+
+ArrayLiteral {
+  "[" (Expression ("," Expression)*)? "]"
+}
+
+FunctionCall {
+  Identifier "(" ArgList? ")"
+}
+
+ArgList {
+  Expression ("," Expression)*
+}
+
+IfStatement {
+  "if" "(" Expression ")" "{" Statement* "}" ("else" "{" Statement* "}")?
+}
+
+LoopStatement {
+  ("for" "(" VariableDeclaration ";" Expression ";" Expression ")" | "while" "(" Expression ")") "{" Statement* "}"
+}
+
+SwitchStatement {
+  "switch" "(" Expression ")" "{" CaseStatement* "}"
+}
+
+CaseStatement {
+  "case" Literal ":" Statement* "break" ";" | "default" ":" Statement* "break" ";"
+}
+
+TryCatchStatement {
+  "try" "{" Statement* "}" "catch" "(" Identifier ")" "{" Statement* "}" ("finally" "{" Statement* "}")?
+}
+
+TypeParamList {
+  Identifier ("," Identifier)*
+}
+
+ParamList {
+  (Identifier ":" Type ("," Identifier ":" Type)*)?
+}
+
+@tokens {
+  Identifier { @asciiLetter+ }
+  SimpleType { "string" | "number" | "boolean" | "any" | "void" | "object" | "array" | "tuple" | Identifier }
+  MapType { "map" "<" Type "," Type ">" }
+  ArrayType { Type "[]" }
+  ObjectType { "object" "{" ObjectTypeBody "}" }
+  Type { SimpleType | MapType | ArrayType | ObjectType }
+  ObjectTypeBody { (Identifier ":" Type ";")* }
+  AccessModifier { "public" | "private" | "protected" }
+  Comment { "//" (![\r\n] any)* }
+  Literal { @digit+ | "\"" (![\r\n"] any)* "\"" }
+  StringLiteral { "\"" (![\r\n"] any)* "\"" }
+  BinaryOperator { "+" | "-" | "*" | "/" | "&&" | "||" | "===" | "!==" | ">" | "<" | ">=" | "<=" }
+}

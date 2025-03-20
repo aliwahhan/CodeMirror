@@ -1,0 +1,66 @@
+.cm-lint-gutter {
+  width: 16px;
+}
+
+.error-marker {
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.lint-tooltip {
+  background: #ffdddd;
+  color: red;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 12px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+/* App.css */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #1e1e1e;
+  color: white;
+  border-bottom: 1px solid #333;
+}
+
+.header-right .save-button {
+  background-color: #569cd6;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.header-right .save-button:hover {
+  background-color: #4a8bbf;
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.editor-container {
+  flex: 1;
+  background-color: #1e1e1e;
+  overflow: hidden;
+}
